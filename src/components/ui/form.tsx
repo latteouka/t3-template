@@ -8,9 +8,11 @@ import {
   FormProvider,
   useFormContext,
   useFormState,
-  type ControllerProps,
-  type FieldPath,
-  type FieldValues,
+} from "react-hook-form"
+import type {
+  ControllerProps,
+  FieldPath,
+  FieldValues,
 } from "react-hook-form"
 
 import { cn } from "@/lib/utils"

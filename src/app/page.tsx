@@ -27,7 +27,7 @@ export default async function Home() {
               <a
                 href="https://ui.shadcn.com"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 shadcn docs
               </a>

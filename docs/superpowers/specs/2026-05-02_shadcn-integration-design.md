@@ -66,7 +66,7 @@ t3-template/
 
 - 工具：`class-variance-authority`、`clsx`、`tailwind-merge`、`tw-animate-css`、`lucide-react`
 - 表單：`react-hook-form`、`@hookform/resolvers`（`zod` 已存在）
-- Radix primitives：約 13 個 `@radix-ui/react-*`（label、slot、dialog、alert-dialog、dropdown-menu、select、tabs、tooltip、avatar、separator、popover、checkbox、switch）
+- Radix primitives：單一 `radix-ui` umbrella package（內含 label、slot、dialog、alert-dialog、dropdown-menu、select、tabs、tooltip、avatar、separator、popover、checkbox、switch 等 sub-modules）。modern shadcn 不再裝散裝 `@radix-ui/react-*`
 - Toast：`sonner`
 - 其他：`cmdk`（若 CLI 帶入，視 shadcn CLI 版本）
 

@@ -93,6 +93,8 @@ Expected：
 
 > 若 CLI 進入互動模式詢問 style / icons 等，選 `new-york` style、`lucide` icons；遇到「使用 src 目錄？」回 yes。
 
+> **Implementation note (2026-05-02 verified):** shadcn CLI 4.6.0 的 `init` 改成 preset 系統，已**不再支援** `--base-color zinc` + `style: "new-york"` 旗標組合，會生成 `style: "base-nova"` / `baseColor: "neutral"`。`shadcn@2` 也因 registry validation 在新版 globals.css schema 上失敗。實作上的 workaround：手動建 `components.json`（依下面 Step 2 的範本）+ 手動 `pnpm add` 5 個 base deps + 手動寫 `src/lib/utils.ts` 與 `src/styles/globals.css`（用 shadcn 官方 Zinc oklch tokens）。**`add` 路徑仍可用 `shadcn@latest`**（init 與 add 路徑分裂，add 向後相容）。
+
 - [ ] **Step 2: 驗證 components.json 內容**
 
 ```bash
@@ -197,7 +199,7 @@ pnpm dlx shadcn@latest add button input label form dialog alert-dialog sonner ca
 
 Expected：
 - 21 個 `.tsx` 檔案出現在 `src/components/ui/`
-- 約 13 個 `@radix-ui/react-*` + `react-hook-form` + `@hookform/resolvers` + `sonner` + 可能 `cmdk` 被裝入 `package.json`
+- 單一 `radix-ui` umbrella package + `react-hook-form` + `@hookform/resolvers` + `sonner` + 可能 `cmdk` 被裝入 `package.json`（modern shadcn 不再裝散裝 `@radix-ui/react-*`）
 - 沒有錯誤訊息
 
 - [ ] **Step 2: 確認 21 個檔案都生出來**
@@ -211,7 +213,7 @@ Expected：21 個 `.tsx` 檔（alert-dialog、avatar、badge、button、card、c
 - [ ] **Step 3: 確認 dependencies 已更新**
 
 ```bash
-grep -E "@radix-ui|react-hook-form|sonner|cmdk" package.json
+grep -E "radix-ui|react-hook-form|sonner|cmdk" package.json
 ```
 
 Expected：列出新增的 Radix / form / toast 相依。
